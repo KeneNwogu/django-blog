@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="post-entry">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.body }}</p>
+    </div>
+    <a href="{% url 'create_comment' post.pk %}">+Add Comment</a>
+    <a href="{% url 'post_edit' post.pk %}">+ Edit Post</a>
+    <a href="{% url 'comments' post.pk %}">+ {{ comments.count }} Comments</a>
+{% endblock %}

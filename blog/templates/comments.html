@@ -1,0 +1,7 @@
+{% if comments %}
+{% for comment in comments %}
+    <p> {{ comment.name }}: {{ comment.body }} </p>
+{% endfor %}
+{% else %}
+     <p>No comments</p>
+{% endif %}

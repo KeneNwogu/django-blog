@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>New post</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                <div style="margin-bottom: 30px">
+                    {% if field.name != 'author' and field.name != 'body' %}
+                    <input type="{{ field.field.widget.input_type }}" class="form-control"
+                    name="{{ field.name }}"
+                    id="id_{{ field.name }}"
+                    value="{{ field.value }}">
+                    {% endif %}
+
+                    {% if field.name == 'author' %}
+                        <input type="{{ field.field.widget.input_type }}" class="form-control"
+                    name="{{ field.name }}"
+                    id="id_{{ field.name }}"
+                    value="{{ field.value }}" readonly>
+                    {% endif %}
+
+                    {% if field.name == 'body' %}
+                    <textarea type="" class="form-control"
+                    name="{{ field.name }}"
+                    id="id_{{ field.name }}"
+                    value="{{ field.value }}"> {{ field.value }}</textarea>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+            <input class="btn btn-primary" type="submit" value="Save">
+        </form>
+
+        <a href="{% url 'post_delete' post.pk %}">- Delete post</a>
+{% endblock %}

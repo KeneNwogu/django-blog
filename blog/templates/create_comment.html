@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if request.user.is_authenticated %}
+   <form method="post">
+       {% csrf_token %}
+       {% for field in comment_form %}
+        <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+            <div style="margin-bottom: 30px">
+                {% if field.name != 'name' %}
+                <textarea name="{{ field.name }}" class="form-control"></textarea>
+                {% else %}
+                   <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" class="form-control" value="{{ user }}" readonly>
+                {% endif %}
+            </div>
+    {% endfor %}
+    <input type="submit" value="Comment" class="btn btn-primary">
+   </form>
+      {% else %}
+         <p>You have to <a href="{% url 'login' %}">log-in</a> to make comments</p>
+   {% endif %}
+{% endblock %}

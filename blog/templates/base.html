@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <a class="navbar-brand" href="{% url 'home' %}">Django Blog</a>
+            <ul class="navbar-nav nav">
+
+                {% if request.user.is_authenticated %}
+                <li class="navbar-item">
+                    <a class="nav-link" href="{% url 'post_create' %}">New Blog Post</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="{% url 'password_change' %}">Change password</a>
+                </li>
+                {% endif %}
+
+                <li class="navbar-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+
+                {% if not request.user.is_authenticated %}
+                <li class="navbar-item">
+                    <a class="nav-link" href="{% url 'login' %}">Log-in</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
