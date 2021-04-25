@@ -13,3 +13,4 @@ Hosted at: https://kcee-django-blog.herokuapp.com/
 
 Minor 'bugs':
 No errors displayed on invalid form submission
+Page titles are the same
