@@ -2,8 +2,8 @@
 Basic Blog made with Django
 
 Features:
-Login  /login
-Logout /logout
+Login /login
+Logout  /logout
 Registeration /register
 Change Password /password/change
 Create Blog Post /post/create
